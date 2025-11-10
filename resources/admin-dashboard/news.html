@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Management - KOPARADIO-MUSIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3><span class="flag-color-1">KOPA</span><span class="flag-color-2">RADIO</span><span class="flag-color-3">-</span><span class="flag-color-4">ADMIN</span></h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="music.html">
+                    <i class="fas fa-music"></i> Music Management
+                </a>
+            </li>
+            <li>
+                <a href="videos.html">
+                    <i class="fas fa-video"></i> Video Management
+                </a>
+            </li>
+            <li>
+                <a href="news.html" class="active">
+                    <i class="fas fa-newspaper"></i> News Management
+                </a>
+            </li>
+            <li>
+                <a href="events.html">
+                    <i class="fas fa-calendar-alt"></i> Events Management
+                </a>
+            </li>
+            <li>
+                <a href="users.html">
+                    <i class="fas fa-users"></i> User Management
+                </a>
+            </li>
+            <li>
+                <a href="analytics.html">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div id="content">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="ms-auto d-flex align-items-center">
+                    <div class="dropdown me-4">
+                        <button class="btn btn-light position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <li><h6 class="dropdown-header">Notifications</h6></li>
+                            <li><a class="dropdown-item" href="#">New user registered</a></li>
+                            <li><a class="dropdown-item" href="#">3 new music submissions</a></li>
+                            <li><a class="dropdown-item" href="#">Event approval needed</a></li>
+                            <li><a class="dropdown-item" href="#">System update available</a></li>
+                            <li><a class="dropdown-item" href="#">Weekly report ready</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dropdown">
+                        <div class="user-profile" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Admin User">
+                            <div>
+                                <h6 class="mb-0">Admin User</h6>
+                                <small class="text-muted">Administrator</small>
+                            </div>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container-fluid p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0">News Management</h4>
+                <button class="btn btn-primary"><i class="fas fa-plus me-2"></i> Add New Article</button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Filters</h5>
+                            <button class="btn btn-sm btn-link">Reset</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Category</label>
+                                <select class="form-select">
+                                    <option selected>All Categories</option>
+                                    <option>Music News</option>
+                                    <option>Artist Updates</option>
+                                    <option>Event Announcements</option>
+                                    <option>Industry News</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select">
+                                    <option selected>All Status</option>
+                                    <option>Published</option>
+                                    <option>Pending</option>
+                                    <option>Draft</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Author</label>
+                                <select class="form-select">
+                                    <option selected>All Authors</option>
+                                    <option>John Phiri</option>
+                                    <option>Sarah Mwale</option>
+                                    <option>David Banda</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary w-100">Apply Filters</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">All News Articles</h5>
+                            <div class="input-group w-50">
+                                <input type="text" class="form-control" placeholder="Search articles...">
+                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Category</th>
+                                            <th>Views</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Zed Beats Festival Announces 2023 Lineup</td>
+                                            <td>John Phiri</td>
+                                            <td>Event Announcements</td>
+                                            <td>8,742</td>
+                                            <td><span class="badge bg-success">Published</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Exclusive Interview with T-Sean on His New Album</td>
+                                            <td>Sarah Mwale</td>
+                                            <td>Artist Updates</td>
+                                            <td>6,521</td>
+                                            <td><span class="badge bg-success">Published</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zambian Music Streaming Up 40% This Year</td>
+                                            <td>David Banda</td>
+                                            <td>Industry News</td>
+                                            <td>5,328</td>
+                                            <td><span class="badge bg-success">Published</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mampi Announces World Tour 2023</td>
+                                            <td>John Phiri</td>
+                                            <td>Artist Updates</td>
+                                            <td>4,876</td>
+                                            <td><span class="badge bg-success">Published</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>New Music Video from Jay Rox Coming Soon</td>
+                                            <td>Sarah Mwale</td>
+                                            <td>Music News</td>
+                                            <td>3,945</td>
+                                            <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kalindula Revival: Traditional Music Makes a Comeback</td>
+                                            <td>David Banda</td>
+                                            <td>Industry News</td>
+                                            <td>2,567</td>
+                                            <td><span class="badge bg-secondary">Draft</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="text-center mt-2">
+                                <small class="text-muted">Showing 1 to 6 of 42 results</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

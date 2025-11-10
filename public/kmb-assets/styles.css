@@ -1,0 +1,200 @@
+:root {
+    --primary: #e41c1c;
+    --secondary: #ff9d00;
+    --dark: #1a1a1a;
+    --light: #f8f9fa;
+    --text: #333333;
+    --sidebar-width: 250px;
+    --header-height: 70px;
+}
+
+/* ---------- GLOBAL ---------- */
+body {
+    background-color: #f5f8fa;
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+}
+
+/* ---------- SIDEBAR ---------- */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--dark);
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #151515;
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+}
+
+#sidebar ul li a {
+    padding: 15px 25px;
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover {
+    color: white;
+    background: #2a2a2a;
+}
+
+#sidebar ul li a.active {
+    background: var(--primary);
+    color: white;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* ---------- CONTENT ---------- */
+#content {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    background-color: #f5f8fa;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: var(--header-height);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+/* ---------- BUTTON ---------- */
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #c21616;
+}
+
+/* ---------- NOTIFICATION ---------- */
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- USER PROFILE ---------- */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ---------- FLAG COLORS ---------- */
+.flag-color-1 { color: #198a00; }
+.flag-color-2 { color: #e41c1c; }
+.flag-color-3 { color: #ff9d00; }
+
+/* ---------- TOGGLE BEHAVIOR (ALL DEVICES) ---------- */
+#sidebar.active {
+    margin-left: calc(-1 * var(--sidebar-width));
+}
+
+#content.active {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 992px) {
+    /* Hide sidebar by default on smaller screens */
+    #sidebar {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    #content.active {
+        margin-left: var(--sidebar-width);
+        width: calc(100% - var(--sidebar-width));
+    }
+
+    .navbar .btn {
+        padding: 8px 12px;
+    }
+
+    .user-profile h6 {
+        font-size: 0.9rem;
+    }
+
+    .user-profile small {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .user-profile img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .navbar {
+        height: 60px;
+    }
+
+    .notification-badge {
+        width: 15px;
+        height: 15px;
+        font-size: 0.6rem;
+    }
+}
