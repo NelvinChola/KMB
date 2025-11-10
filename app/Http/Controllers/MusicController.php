@@ -41,32 +41,36 @@ class MusicController extends Controller
     /**
      * Store a newly created track in storage.
      */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title'       => 'required|string|max:255',
-            'artist'      => 'required|string|max:255',
-            'genre'       => 'nullable|string|max:100',
-            'status'      => 'required|in:draft,pending,published',
-            'description' => 'nullable|string',
-            'cover_image' => 'nullable|image|max:2048', // max 2MB
-            'file_path'   => 'nullable|mimes:mp3,wav,ogg|max:10240', // max 10MB
-        ]);
+  public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title'       => 'required|string|max:255',
+        'artist'      => 'required|string|max:255',
+        'genre'       => 'nullable|string|max:100',
+        'status'      => 'required|in:draft,pending,published',
+        'description' => 'nullable|string',
+        'cover_image' => 'nullable|image|max:2048',
+        'file_path'   => 'nullable|mimes:mp3,wav,ogg|max:10240',
+    ]);
 
-        // Handle cover image upload
+    try {
         if ($request->hasFile('cover_image')) {
             $validated['cover_image'] = $request->file('cover_image')->store('music/covers', 'public');
         }
 
-        // Handle music file upload
         if ($request->hasFile('file_path')) {
             $validated['file_path'] = $request->file('file_path')->store('music/files', 'public');
         }
 
+        $validated['created_by'] = 1; // important
+
         Music::create($validated);
 
         return redirect()->route('music.index')->with('success', 'Music track added successfully.');
+    } catch (\Exception $e) {
+        return redirect()->back()->withInput()->with('error', 'Error creating music track: ' . $e->getMessage());
     }
+}
 
     /**
      * Show the form for editing a track.
@@ -131,4 +135,28 @@ class MusicController extends Controller
 
         return redirect()->route('music.index')->with('success', 'Music track deleted successfully.');
     }
+
+
+    /**
+ * Increment play count for a track
+ */
+public function play(Music $music)
+{
+    $music->increment('play_count');
+    return response()->json(['status' => 'success', 'play_count' => $music->play_count]);
+}
+
+/**
+ * Download music track and increment download count
+ */
+public function download(Music $music)
+{
+    $music->increment('download_count');
+
+    if (Storage::disk('public')->exists($music->file_path)) {
+        return response()->download(storage_path('app/public/' . $music->file_path));
+    }
+
+    return redirect()->back()->with('error', 'File not found.');
+}
 }
